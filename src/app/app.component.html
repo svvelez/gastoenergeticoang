@@ -1,0 +1,194 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <mat-toolbar color="primary">
+         
+          <span>GASTO ENERGETICO TOTAL</span>
+          <span class="example-spacer"></span>
+          <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+            <mat-icon>share</mat-icon>
+          </button>
+        </mat-toolbar>
+        
+        <mat-card-content>
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+           
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef> Weight </th>
+              <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef> Symbol </th>
+              <td mat-cell *matCellDef="let element">    
+                <button mat-raised-button color="warn">Borrar</button>
+                <button mat-raised-button color="primary">Select</button>
+              </td>  
+               
+            </ng-container>
+
+          
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          
+          
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card>
+        <mat-card-content>
+         
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>Peso</mat-label>
+              <input matInput placeholder="Ingreese su peso" value="" type="number">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Estatura</mat-label>
+              <input matInput placeholder="Ingreese su estatura" value="" type="number">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Edad</mat-label>
+              <input matInput placeholder="Ingreese su edad" value="" type="number">
+            </mat-form-field>
+            <mat-slide-toggle class="example-section" >Hombre</mat-slide-toggle>
+            <mat-slide-toggle class="example-section">Mujer</mat-slide-toggle> 
+
+            <mat-form-field class="select">
+              <mat-label>actividad física practicada</mat-label>
+              <select matNativeControl required>
+                <option value="Sedentario">Sedentario</option>
+                <option value="Actividad ligera">Actividad ligera</option>
+                <option value="Actividad Moderada">Actividad Moderada</option>
+                <option value="Actividad Intensa">Actividad Intensa</option>
+                <option value="Actividad Muy Intensa">Actividad Muy Intensa</option>
+                <option value="Acción Dinámica Específica">Acción Dinámica Específica</option>
+          
+              </select>
+            </mat-form-field>
+
+           <p>
+            <button mat-raised-button color="primary">Agregar</button> 
+            <button mat-raised-button color="primary">Modificar</button>
+          </form>
+          
+        
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div>
+    <table border="1" *ngIf="hayRegistros(); else sinarticulos">
+      <tr>
+        <td>Codigo</td><td>Descripcion</td><td>Precio</td><td>Borrar</td><td>Seleccionar</td>
+      </tr>
+      <tr *ngFor="let art of articulos">
+        <td>{{art.codigo}}</td>
+        <td>{{art.descripcion}}</td>
+        <td>{{art.precio}}</td>
+        <td><button (click)="baja(art.codigo)">Borrar?</button></td>
+        <td><button (click)="seleccionar(art.codigo)">Seleccionar</button></td>        
+      </tr>
+    </table>
+    <ng-template #sinarticulos><p>No hay articulos.</p></ng-template>
+    <div>
+      <p>
+        descripcion:<input type="text" [(ngModel)]="art.descripcion" />
+      </p>
+      <p>
+        precio:<input type="number" [(ngModel)]="art.precio" />
+      </p>            
+      <p><button (click)="alta()">Agregar</button>
+      <button (click)="modificacion()">Modificar</button></p>
+    </div>  
+</div>
+ -->
+
+
+<!-- <div class="contenedor">
+  <p>
+    <mat-toolbar color="primary">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>GASTO ENERGETICO TOTAL</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar>
+  </p>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="p" type="number" placeholder="Ingrese su peso">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="e" type="number" placeholder="Ingrese su estatura">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="i" type="number" placeholder="Ingrese su edad">
+  </mat-form-field>
+
+  <mat-slide-toggle [(ngModel)]="Hombre">Hombre</mat-slide-toggle>
+  <mat-slide-toggle [(ngModel)]="Mujer">Mujer</mat-slide-toggle> -->
+
+  <!-- <h4>Basic native select</h4> -->
+  <!-- <mat-form-field>
+    <mat-label>actividad física practicada</mat-label>
+    <select matNativeControl required [(ngModel)]="Actividad">
+      <option value="Sedentario">Sedentario</option>
+      <option value="Actividad ligera">Actividad ligera</option>
+      <option value="Actividad Moderada">Actividad Moderada</option>
+      <option value="Actividad Intensa">Actividad Intensa</option>
+      <option value="Actividad Muy Intensa">Actividad Muy Intensa</option>
+      <option value="Acción Dinámica Específica">Acción Dinámica Específica</option>
+
+    </select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="operar()">Operar</button>
+
+
+  <mat-card>
+    <mat-card-content>
+      <p>{{resultado}}</p>
+    </mat-card-content>
+    <mat-card-content>
+      <p>Lo recomendado es </p>
+    </mat-card-content>
+  </mat-card>
+
+</div> -->

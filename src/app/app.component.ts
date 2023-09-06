@@ -21,6 +21,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class AppComponent implements OnInit{
   ngOnInit(): void {
+    this.recuperarTodos();
   }
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
@@ -33,6 +34,50 @@ export class AppComponent implements OnInit{
     descripcion:"",
     precio:0
   }
+
+  constructor(private articulosServicio: ArticulosService) {}
+
+  recuperarTodos() {
+    this.articulosServicio.recuperarTodos().subscribe((result:any) => this.articulos = result);
+  }
+
+  alta() {
+    this.articulosServicio.alta(this.art).subscribe((datos:any) => {
+      if (datos['resultado']=='OK') {
+        alert(datos['mensaje']);
+        this.recuperarTodos();
+      }
+    });
+  }
+
+  baja(codigo:number) {
+    this.articulosServicio.baja(codigo).subscribe((datos:any) => {
+      if (datos['resultado']=='OK') {
+        alert(datos['mensaje']);
+        this.recuperarTodos();
+      }
+    });
+  }
+
+  modificacion() {
+    this.articulosServicio.modificacion(this.art).subscribe((datos:any) => {
+      if (datos['resultado']=='OK') {
+        alert(datos['mensaje']);
+        this.recuperarTodos();
+      }
+    });    
+  }
+  
+  seleccionar(codigo:number) {
+    this.articulosServicio.seleccionar(codigo).subscribe((result:any) => this.art = result[0]);
+  }
+
+  hayRegistros() {
+    return true;
+  } 
+
+
+
 }
 
 /* export class AppComponent implements OnInit {
